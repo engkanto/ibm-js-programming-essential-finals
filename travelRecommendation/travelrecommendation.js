@@ -17,11 +17,7 @@ const resetResult = () => {
   result.innerHTML = "";
 }
 const showResult = (name, img, info) => {
-  // if (dropdown.style.display === "none" || dropdown.style.display === "") {
-    dropdown.style.display = "block";
-  // } else {
-    // dropdown.style.display = "none";
-  // }
+  dropdown.style.display = "block";
   const div = document.createElement("div");
   div.classname = "destination";
   div.innerHTML = `
@@ -70,20 +66,19 @@ fetch("travel1.json")
         });
       });
 
-      data.temples.map((temple) => {
-        if (temple.name.toLowerCase().includes(searchQuery)) {
+      if(searchQuery === "temple" || searchQuery === "temples") {
+        data.temples.map((temple) => {
           showResult(temple.name, temple.imageUrl, temple.description);
           notfound = false;
-        }
-      });
+        });
+      }
 
-      data.beaches.map((beach) => {
-        if (beach.name.toLowerCase().includes(searchQuery)) {
+      if(searchQuery === "beach" || searchQuery === "beaches") {
+        data.beaches.map((beach) => {
           showResult(beach.name, beach.imageUrl, beach.description);
           notfound = false;
-        }
-      });
-      console.log(`notfound: ${notfound}`);
+        });
+      }
 
       if (notfound) {
         console.log("Error, not found");
