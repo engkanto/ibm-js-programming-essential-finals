@@ -338,7 +338,8 @@ form .inputval{
     background-color: #55555595;
     position: absolute;
     width: 25rem;
-    height: auto;
+    max-height: 100vh;
+    overflow: auto;
     padding: 1rem 1rem;
     top: 100%;
     right: 1%;

@@ -53,27 +53,33 @@ fetch("travel1.json")
     const search = () => {
       let searchQuery = search_input.value.toLowerCase();
       let notfound = true;
-      console.log(`searchQuery: ${searchQuery}`);
       resetResult();
 
       data.countries.map((country) => {
         country.cities.map((city) => {
           if (city.name.toLowerCase().includes(searchQuery)) {
-            console.log(`found city ${city.name}`);
             showResult(city.name, city.imageUrl, city.description);
             notfound = false;
           }
         });
       });
+      if(searchQuery === "country" || searchQuery === "countries") {
+        data.countries.map((country) => {
+          country.cities.map((city) => {
+            showResult(city.name, city.imageUrl, city.description);
+            notfound = false;
+          });
+        });
+      }
 
-      if(searchQuery === "temple" || searchQuery === "temples") {
+      else if(searchQuery === "temple" || searchQuery === "temples") {
         data.temples.map((temple) => {
           showResult(temple.name, temple.imageUrl, temple.description);
           notfound = false;
         });
       }
 
-      if(searchQuery === "beach" || searchQuery === "beaches") {
+      else if(searchQuery === "beach" || searchQuery === "beaches") {
         data.beaches.map((beach) => {
           showResult(beach.name, beach.imageUrl, beach.description);
           notfound = false;
